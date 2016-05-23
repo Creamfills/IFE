@@ -1,0 +1,166 @@
+.shake{
+	width: 40px;
+	height: 40px;
+	display: block;
+	background-color: lightgreen;
+	border-radius: 50%;
+	color: #fff;
+	margin: 5px;
+	font-size: 24px;
+	text-align: center;
+	line-height: 40px;
+	cursor: pointer;
+	-webkit-transition:all 0.25s;
+}
+.shake:hover{
+	-webkit-animation:shake 0.25s;
+	background-color: lightblue;
+}
+@-webkit-keyframes shake{
+	0%,10%,55%,90%,94%,98%,100%{
+		-webkit-transform: scale(1,1);
+	}
+	30%{
+		-webkit-transform: scale(1.14,0.86);
+	}
+	75%{
+		-webkit-transform: scale(0.92,1.08);
+	}
+	92%{
+		-webkit-transform: scale(1.04,0.96);
+	}
+	96%{
+		-webkit-transform: scale(1.02,0.98);
+	}
+	99%{
+		-webkit-transform: scale(1.01,0.99);
+	}
+}
+
+.search{
+	width: 100px;
+	height: 40px;
+	border: solid 1px lightblue;
+	border-radius: 25px;
+	position: absolute;
+	right: 200px;
+	text-indent: 12px;
+	color: #666;
+    font-size: 16px;
+    padding: 0;
+    -webkit-transition: width 0.5s;
+}
+.search:focus{
+	width: 300px;
+}	
+
+.banner1{
+	width: 234px;
+	height: 34px;
+	border-radius: 40px;
+	position: absolute;
+	top: 400px;
+	left: 600px;
+}
+.banner1 a{
+	display: inline-block;
+	width: 40px;
+	height: 40px;
+	line-height: 40px;
+	border-radius: 50%;
+	border: 2px solid lightblue;
+	position: absolute;
+	left: 0px;
+	top: 0px;
+	background-color: lightgreen;
+	color: #fff;
+	text-align: center;
+	text-decoration: none;
+	cursor: pointer;
+	z-index: 2;
+}
+.banner1 a:hover + span{
+	-webkit-transform: translateX(40px);
+	opacity: 1;
+}
+.banner1 span{
+	display: inline-block;
+	width: auto;
+	padding: 0 20px;
+	height: 40px;
+	line-height: 40px;
+	background-color: lightblue;
+	border-radius: 30px;
+	text-align: center;
+	color: #fff;
+	position: absolute;
+	top: 2px;
+	opacity: 0;
+	-webkit-transition: all 1s;
+	-webkit-transform: translateX(80px);
+}
+table{
+	width: auto;
+	height: auto;
+}	
+tr:nth-child(odd)>td{
+    background: grey;
+}
+tr:nth-child(1)>td{
+    background-color: black;
+    color: white;
+}
+tr:nth-child(2)>td, tr:nth-child(3)>td, tr:nth-child(4)>td{
+    color: red;
+}
+td{
+	width: 140px;
+	height: 30px;
+	font-size: 16px;
+	font-family: "黑体";
+	color: black;
+}
+td:nth-child(2){
+	width: 200px;
+}
+
+#container{
+	padding: 0;
+	width: 400px;
+	height: 200px;
+	background-color: green;
+	position: absolute;
+	-webkit-animation: slide 4s linear infinite;
+}
+ul{
+	list-style: none;
+	position: absolute;
+	top: 152px;
+	right: 0px;
+}
+li{
+	float: left;
+	display: inline-block;
+	width: 30px;
+	height: 30px;
+	margin: 1px;
+	background-color: grey;
+	text-align: center;
+	line-height: 30px;
+	opacity: 0.6;
+	color: #fff;
+	cursor: pointer;
+}
+li:hover{
+	background-color: orange;
+}
+@-webkit-keyframes slide{
+	0%,10%,25%,35%,50%{
+		background-color: green;
+	}
+	60%,75%,85%,100%{
+		background-color: blue;
+    }
+	
+}
+
