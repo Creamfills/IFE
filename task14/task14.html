@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8"/>
+    <title>IFE JavaScript</title>
+</head>
+<body>
+	<h3>污染城市列表</h3>
+    <ul id="aqi-list"></ul>
+	<script type="text/javascript">
+        var aqiData=[
+                        ["北京",90],
+                        ["上海",50],
+                        ["福州",10],
+                        ["广州",50],
+                        ["成都",90],
+                        ["西安",100]
+                    ];
+        var aqiDataNew=new Array();
+        (function(){
+            //从给定数组中选出数值高于60的城市，然后将其放入新的数组
+            for(var i=0;i<aqiData.length;i++){
+                //for(var j=0;j<aqiData[i].length;j++){
+                // var j=1;
+                if(aqiData[i][1]>=60){
+                        //console.log(aqiData[i]);
+                        aqiDataNew.push(aqiData[i]);
+                    }
+                }
+            //对新数组中的元素进行排序   
+            for(var i=0;i<aqiDataNew.length;i++){
+                var flag=aqiDataNew[i];
+                for(var j=i+1;j<aqiDataNew.length;j++){
+                    if(flag[1]<aqiDataNew[j][1]){
+                        var temp=flag;
+                        flag=aqiDataNew[j];
+                        aqiDataNew[j]=temp;                    }
+                }
+                aqiDataNew[i]=flag;
+            }
+            //将排序后的城市依次显示出来
+            //在使用length属性的时候，用<而不是<=，否则会报错无法得到属性值    
+            for(var i=0;i<aqiDataNew.length;i++){
+                var j=i+1;
+                var newLi=document.createElement("li");
+                var context=document.createTextNode("第"+j+"名:"+aqiDataNew[i][0]+","+aqiDataNew[i][1]);
+                newLi.appendChild(context);
+                document.getElementById("aqi-list").appendChild(newLi);
+            }
+        })();
+	</script>
+</body>
+</html>
