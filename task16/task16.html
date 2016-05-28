@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8"/>
+	<title>IFE Task 16</title>
+</head>
+<body>
+	<div>
+        <label>城市名:<input id="aqi-city-input" type="text"/></label><br/>
+        <label>空气质量指数:<input id="aqi-value-input" type="text"/></label><br/>
+        <button id="add-btn">确认添加</button>
+	</div>
+	<table id="aqi-table">
+        <tr><td>城市</td><td>空气质量</td><td>操作</td></tr>
+	</table>
+	<script>
+        var aqiData=[];
+        //获取输入的数据
+        function addData(){
+        	var cityName=document.getElementById("aqi-city-input").value.trim();
+        	var cityIndex=document.getElementById("aqi-value-input").value.trim();
+            aqiData.push(cityName,cityIndex);
+        }
+        //将获取的数据显示到table中
+        function renderAqiList(){
+        	var t=document.createElement("tr");
+        	    t.innerHTML="<td>"+aqiData[0]+"</td><td>"+aqiData[1]+"</td><td><button class='del-btn' onclick='deleteData(this)'>删除</button></td>";
+        	    document.getElementById("aqi-table").appendChild(t);
+        	    aqiData=[];
+        }
+        //点击删除按钮删除一行
+        function deleteData(e){
+        	var p=e.parentNode.parentNode;
+            document.getElementById("aqi-table").removeChild(p);
+        }
+        //验证输入的数据是否符合规则
+        function check(){
+        	var cityName=document.getElementById("aqi-city-input").value.trim();
+        	var cityIndex=document.getElementById("aqi-value-input").value.trim();
+        	var reg1=/^[a-zA-Z]+$/;
+        	if(!reg1.test(cityName)){
+                alert("城市名请输入英文");
+                return false;
+        	}
+        	var reg2=/^[-]{0,1}[0-9]{1,}$/;
+        	if(!reg2.test(cityIndex)){
+                alert("空气质量请输入整数");
+                return false;
+        	}
+        	addData();
+            renderAqiList();
+        }	
+        function init(){	
+            document.getElementById("add-btn").onclick=check;
+        }
+        init();    
+       // document.getElementsByClassName("del-btn").onclick=deleteData(this);
+	</script>
+</body>
+</html>

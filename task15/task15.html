@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8"/>
+	<title>IFE JavaScript Task 15</title>
+</head>
+<body>
+	<ul id="source">
+        <li>北京空气质量:<b>90</b></li>
+        <li>上海空气质量:<b>70</b></li>
+        <li>天津空气质量:<b>80</b></li>
+        <li>广州空气质量:<b>50</b></li>
+        <li>深圳空气质量:<b>40</b></li>
+        <li>福州空气质量:<b>32</b></li>
+        <li>成都空气质量:<b>90</b></li>
+	</ul>
+	<ul id="resort"></ul>
+	<button id="sort-button">排序</button>
+	<script>
+	    //获取列表并提取需要的字符
+        function getData(){
+        	var liList=document.getElementById("source").getElementsByTagName("li");
+        	var liListNew=[]；//最终装入数据的数组
+        	var tempArray=[]; //转移数据的临时数组
+        	var temp="";
+        	var tempLocation="";
+        	var tempIndicator="";
+            for(var i=0;i<liList.length;i++){
+	            temp=liList[i].innerHTML;
+	            tempLocation=temp.slice(0,2);
+	            tempIndicator=temp.slice(10,12);
+                tempArray=[tempLocation,tempIndicator];
+                liListNew.push(tempArray);
+                temp="";
+                tempArray=[];
+	          //  console.log(tempIndicator);
+	          //  console.log(typeof temp);
+            }
+            return liListNew;
+        } 
+        //根据污染指数对数组内城市进行排序   
+        function sortAqiData(data){
+        	for(var i=0;i<data.length;i++){
+        		var flag=data[i];
+        		for(var j=i+1;j<data.length;j++){
+        			if(data[j][1]>flag[1]){
+        				var temp=flag;
+        				flag=data[j];
+        				data[j]=temp;
+        			}
+        		}
+        		data[i]=flag;
+        	}
+        	return data;
+        }
+        var contain=document.getElementById("resort");
+        //显示数据
+        function render(data){
+        	for(var i=0;i<data.length;i++){
+            	/*var containSub=document.createElement("li");
+            	var containSubSub=document.createElement("b");
+                var context=document.createTextNode("第一名:"+data[i][0]+","+"空气质量:");
+                var contextNum=document.createTextNode(data[i][1]);
+                var a=containSubSub.appendChild(contextNum);
+                var b=containSub.appendChild(context);
+              var c=b.appendChild(a);
+              contain.appendChild(c);*/
+                var containSub=document.createElement("li");
+                var j=i+1;
+                containSub.innerHTML="第"+j+"名:"+data[i][0]+","+"空气质量:"+"<b>"+data[i][1]+"</b>";
+                contain.appendChild(containSub);
+            }
+        }
+        function btnHandle(){
+        	var aqiData=getData();
+        	aqiData=sortAqiData(aqiData);
+        	render(aqiData);
+        }
+        function init(){
+            var s=document.getElementById("sort-button");
+            s.onclick=btnHandle;
+        }
+        init();
+	</script>
+</body>
+</html>
