@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>IFE　Task 18</title>
+    <style>
+        span{
+        	display: inline-block;
+        	width: auto;
+        	min-width: 40px;
+        	height: 40px;
+        	background-color: red;
+        	font-size: 30px;
+        	line-height: 40px;
+        	text-align: center;
+        	margin: 4px;
+        }
+        #contain{
+        	padding: 0;
+        	margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div>
+    	<input type="text" style="display:inline-block; width:200px; height:20px;"/>
+    	<button onclick="leftIn()">左侧入</button>
+    	<button onclick="rightIn()">右侧入</button>
+    	<button onclick="leftOut()">左侧出</button>
+    	<button onclick="rightOut()">右侧出</button>
+    </div>	
+    <div id="contain"></div>
+    <script>
+        function leftIn(){
+        	var v=document.getElementsByTagName("input")[0].value;
+        	if(!v){
+        		alert("请输入一个值!");
+        		return false;
+        	}
+        	var s=document.createElement("span");
+        	var d=document.createTextNode(v);
+        	s.appendChild(d);
+        	var contain=document.getElementById("contain");
+        	var containSpan=document.getElementById("contain").getElementsByTagName("span");
+        	if(containSpan){
+        		contain.insertBefore(s,containSpan[0]);
+        	}else{
+        	    contain.appendChild(s);
+        	}    
+        }
+        function rightIn(){
+        	var v=document.getElementsByTagName("input")[0].value;
+        	if(!v){
+        		alert("请输入一个值!");
+        		return false;
+        	}
+        	var s=document.createElement("span");
+        	var d=document.createTextNode(v);
+        	s.appendChild(d);
+        	var contain=document.getElementById("contain");
+        	contain.appendChild(s);
+        }
+        function leftOut(){
+        	var contain=document.getElementById("contain");
+        	var s=document.getElementById("contain").getElementsByTagName("span")[0];
+        	if(s){
+        		var d=s.innerHTML;
+        		window.alert(d);
+            	contain.removeChild(s);
+            }else{
+            	window.alert("队列空!");
+            }
+        }
+        function rightOut(){
+        	var contain=document.getElementById("contain");
+        	var s=document.getElementById("contain").getElementsByTagName("span");
+        	var sLength=s.length-1;
+        	if(s[sLength]){
+        		var d=s[sLength].innerHTML;
+        		window.alert(d);
+            	contain.removeChild(s[sLength]);
+            }else{
+            	window.alert("队列空!");
+            }
+        }
+    </script>
+</body>
+</html>
